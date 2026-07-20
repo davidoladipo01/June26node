@@ -46,10 +46,10 @@ const registerUser = async (req, res) => {
             lastName,
             email,
             password: hashedPassword,
-            profilePicture:{
+            profilePicture:profilePicture?{
                 secure_url: image.secure_url,
                 public_id:image.public_id
-            }
+            }:null
         });
 
         const token = await jwt.sign({ id: user._id }, process.env.AUTH_SECRET, { expiresIn: "5h" })
